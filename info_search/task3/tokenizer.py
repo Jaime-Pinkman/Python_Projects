@@ -32,8 +32,8 @@ def tokenize(content):
     # remove punctuation
     translator = str.maketrans(string.punctuation, ' '*len(string.punctuation))
     result = result.translate(translator)
-    bad_symbols = ['`', '●', '·', '•', '—', '”', '•', '•']
-    [result.replace(symbol, ' ') for symbol in bad_symbols]
+    #bad_symbols = ['`', '●', '·', '•', '—', '”', '•', '•']
+    #[result.replace(symbol, ' ') for symbol in bad_symbols]
 
     # tokenize string
     result = word_tokenize(result)
@@ -45,7 +45,7 @@ def tokenize(content):
     stemmer = PorterStemmer()
 
     # stem tokens
-    result = [stemmer.stem(w) for w in result]
+    result = [stemmer.stem(''.join(filter(str.isalpha, w))) for w in result]
 
     return result
 
